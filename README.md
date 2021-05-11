@@ -39,9 +39,29 @@ dependencies {
 ### create crash
 To finish setting up Crashlytics and see initial data in the Crashlytics dashboard of the Firebase console, you need to force a test crash.
 
+![main_ss](https://github.com/ayhanunal/FirebaseCrashlytics/blob/main/ss/main_ss.png)
+![click_ss](https://github.com/ayhanunal/FirebaseCrashlytics/blob/main/ss/click_ss.png)
+
+1 -) Click on the 'create error' button and create a crash (1)
+
 ```kotlin
-val myDialog: Dialog by lifecycleAware { getDarkThemeDialog(baseContext) }
-    .onCreate { this.show() } // show the dialog when the lifecycle's state is onCreate.
-    .onDestroy { this.dismiss() } // dismiss the dialog when the lifecycle's state is onDestroy.
-    .lazy() // initlize the dialog lazily.
+create_button.setOnClickListener {
+	throw RuntimeException("Crash") // Force a crash
+	}
 ```
+
+2 -) Click the 'division by zero' button and create a division by zero crash (2)
+
+```kotlin
+division_zero_error.setOnClickListener {
+            var result = 1/0
+        }
+```
+
+3 -) Go to the Firebase Crashlytics console and check for crashes
+
+![crashlytics_err](https://github.com/ayhanunal/FirebaseCrashlytics/blob/main/ss/crashlytics_err.png)
+
+4 -) For crash details, choose one of the crashes
+
+![crashlytics_err](https://github.com/ayhanunal/FirebaseCrashlytics/blob/main/ss/crash_detail.png)
